@@ -1,0 +1,13 @@
+// Minimal configuration with few errors, could be improved
+// There are also rules in package.json, I think these here would override them!
+
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+  
+}
