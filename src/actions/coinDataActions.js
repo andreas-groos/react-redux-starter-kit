@@ -25,9 +25,16 @@ export function receiveCoinData(json) {
   }
 }
 
+export function setActiveCoin(e) {
+  return {
+    type: 'SET_ACTIVE_COIN',
+    activeCoin: e
+  }
+}
+
 export function fetchCoinData() {
   return function(dispatch) {
-    dispatch(loading(true))
+    // dispatch(loading(true))
     return fetch('https://api.coinmarketcap.com/v1/ticker/?limit=10')
       .then(
 
@@ -38,6 +45,7 @@ export function fetchCoinData() {
         addImages(json)
         dispatch(receiveCoinData(json))
         dispatch(loading(false))
+      // TODO: 90 Update activeCoin with each update so it's up to date
       }
       // We can dispatch many times!
       // Here, we update the app state with the results of the API call.

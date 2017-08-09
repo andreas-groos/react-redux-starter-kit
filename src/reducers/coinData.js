@@ -17,6 +17,10 @@ export default (state = [], action) => {
     return Object.assign({}, state, {
       currencies: action.currencies
     })
+  case 'SET_ACTIVE_COIN':
+    return Object.assign({}, state, {
+      activeCoin: action.activeCoin
+    })
   default:
     return state
   }

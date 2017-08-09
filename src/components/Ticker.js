@@ -16,9 +16,9 @@ class Ticker extends Component {
   }
   ticker() {
     let timer = moment().format('MMMM Do YYYY, h:mm:ss a')
-    this.setState({
-      date: timer
-    })
+this.setState({
+  date: timer
+})
   }
   render() {
     return (

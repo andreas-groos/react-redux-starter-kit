@@ -4,11 +4,11 @@ export default class TableRow extends Component {
 
   percent(number) {
     if (number > 0) {
-      return (<p style={ { color: 'green' } }>
+      return (<p style={ { color: '#7dc14c' } }>
                 { number }
               </p>)
     } else if (number < 0) {
-      return (<p style={ { color: 'red' } }>
+      return (<p style={ { color: '#d24735' } }>
                 { number } </p>)
 
     } else {
@@ -20,7 +20,7 @@ export default class TableRow extends Component {
   }
   render() {
     return (
-      <tr>
+      <tr onClick={ () => this.props.onTableRowClick(this.props.data) }>
         <th className="">
           { this.props.data.rank }
         </th>

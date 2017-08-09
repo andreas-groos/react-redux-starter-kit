@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import * as coinDataActions from '../actions/coinDataActions'
+import CoinDetails from '../components/CoinDetails'
 import Loader from '../components/Loader'
 import Ticker from '../components/Ticker'
 import List from '../components/List'
@@ -13,19 +14,29 @@ class Container extends Component {
     this.state = {
 
     }
-  }
-  // fetchData() {
-  //   axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=10')
-  //     .then(response => {
-  //       this.props.loading(true)
-  //       console.log(response.data)
-  //     })
-  // }
-  componentWillMount() {}
-  componentDidMount() {
-    this.props.fetchCoinData()
+    this.handleTableRowClick = this.handleTableRowClick.bind(this)
 
   }
+
+  componentWillMount() {
+    this.props.loading(true)
+  }
+  componentDidMount() {
+    // Fetch new data every minute
+    this.props.fetchCoinData()
+    setInterval(
+      () => this.update(),
+      600000)
+
+  }
+
+  handleTableRowClick(e) {
+    this.props.setActiveCoin(e)
+  }
+  update() {
+    this.props.fetchCoinData()
+  }
+
 
 
   render() {
@@ -34,12 +45,13 @@ class Container extends Component {
         { /* Displays spinner if data is not yet fetched */ }
         <Ticker />
         <Loader loading={ this.props.coinData.loading } />
-        <List currencies={ this.props.coinData.currencies } />
+        <List currencies={ this.props.coinData.currencies } onTableRowClick={ this.handleTableRowClick } />
+        <hr/>
+        { this.props.coinData.activeCoin ? <CoinDetails coin={ this.props.coinData.activeCoin } /> : null }
       </div>
     )
   }
 }
-// FIXME: state doesn't get pushed to props
 const mapStateToProps = (state, ownProps) => {
   return {
     coinData: state.coinData
@@ -48,7 +60,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCoinData: () => dispatch(coinDataActions.fetchCoinData())
+    fetchCoinData: () => dispatch(coinDataActions.fetchCoinData()),
+    loading: (isLoading) => dispatch(coinDataActions.loading(isLoading)),
+    setActiveCoin: (coin) => dispatch(coinDataActions.setActiveCoin(coin))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Container)

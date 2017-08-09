@@ -12,6 +12,9 @@ export class List extends Component {
 
 
   render() {
+    if (this.props.currencies === undefined) {
+      return null
+    }
     return <div className="row">
              <div className="col-12">
                <table className="table table-striped">
@@ -29,8 +32,7 @@ export class List extends Component {
                  </thead>
                  <tbody>
                    { this.props.currencies.map(e => {
-                       console.log('map', e)
-                       return (<TableRow data={ e } />)
+                       return (<TableRow key={ e.name } data={ e } onTableRowClick={ this.props.onTableRowClick } />)
                      }) }
                  </tbody>
                </table>
