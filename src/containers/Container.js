@@ -4,6 +4,7 @@ import axios from 'axios'
 import * as coinDataActions from '../actions/coinDataActions'
 import Loader from '../components/Loader'
 import Ticker from '../components/Ticker'
+import List from '../components/List'
 
 class Container extends Component {
 
@@ -33,6 +34,7 @@ class Container extends Component {
         { /* Displays spinner if data is not yet fetched */ }
         <Ticker />
         <Loader loading={ this.props.coinData.loading } />
+        <List currencies={ this.props.coinData.currencies } />
       </div>
     )
   }

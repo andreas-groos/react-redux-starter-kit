@@ -2,12 +2,10 @@
 
 function addImages(json) {
   json.map(e => {
-    console.log(e.name)
     const logo = '/img/crypto-icons/128/color/' + e.name.toLowerCase() + '@2x.png'
     e.logo = logo
     return e
   })
-  console.log('after map ', json)
   return json
 }
 
@@ -30,7 +28,6 @@ export function receiveCoinData(json) {
 
 export function fetchCoinData() {
   return function(dispatch) {
-    console.log('fetchdata')
     dispatch(loading(true))
     return fetch('https://api.coinmarketcap.com/v1/ticker/?limit=10')
       .then(
