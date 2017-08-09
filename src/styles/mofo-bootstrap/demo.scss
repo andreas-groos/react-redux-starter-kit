@@ -1,0 +1,212 @@
+// This file is for Sass that applies only to the demo page
+
+@import 'mofo-bootstrap';
+
+.jumbotron {
+  background: $charcoal;
+  color: $white;
+}
+
+.color-blocks {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.color-block {
+  flex: 1;
+  margin: 10px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .swatch {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  [class *= "darker"], .swatch[class*="gray"] {
+    color: $white;
+  }
+
+  .regular {
+    min-height: 100px;
+    color: $white;
+  }
+}
+
+.meta {
+  > * {
+    padding: 10px 0 0;
+    margin: 0;
+  }
+
+  .value {
+    color: lighten($charcoal, 20%);
+  }
+}
+
+.text-block {
+  margin: 2rem 0;
+  text-align: left;
+
+  h1 {
+    font-size: 5rem;
+    letter-spacing: -0.15rem;
+  }
+
+  h5 {
+    font-size: 1.45rem;
+    line-height: 1rem;
+  }
+
+  .meta {
+    text-align: left;
+  }
+}
+
+.button-demo {
+  .h5 {
+    margin-bottom: 0;
+  }
+  .btn {
+    margin-bottom: 2rem;
+  }
+}
+
+.hero-unit {
+  padding: 1rem;
+  margin: 2rem 0;
+  width: 60vw;
+  background: transparentize($black, 0.8);
+}
+
+.typography {
+  text-align: left;
+
+  > * {
+    margin: 30px 0;
+  }
+
+  .meta {
+    color: lighten($charcoal, 35%);
+  }
+}
+
+.important-links {
+  li {
+    background: lighten($dino-red, 40%);
+
+    a {
+      color: darken($dino-red, 10%);
+
+      &:hover {
+        background: lighten($dino-red, 30%);
+      }
+    }
+  }
+}
+
+.color-box {
+
+  .btn {
+    background: $dino-red;
+    box-shadow: 0 2px 0 darken($dino-red, 10%);
+    color: $white;
+    transition: background 0.2s ease-in-out;
+
+    &:hover {
+      background: darken($dino-red, 10%);
+    }
+  }
+}
+
+@mixin colorBlockChildren($color, $lighten...) {
+  @each $brightness in $lighten {
+    @if($brightness < 0) {
+      $brightness: $brightness * -1;
+      .darker-#{$brightness} {
+        background: darken($color, $brightness);
+        &:before{
+          content: '#{darken($color, $brightness)}';
+        }
+      }
+    } @else {
+      .lighter-#{$brightness} {
+        background: lighten($color, $brightness);
+        &:before{
+          content: '#{lighten($color, $brightness)}';
+        }
+      }
+    }
+  }
+  .regular {
+    background: $color;
+    &:before {
+      content: '#{$color}';
+    }
+  }
+}
+
+$mofo-colors: (
+  dino-red: $dino-red,
+  firefox-orange: $firefox-orange,
+  market-orange: $market-orange,
+  flame-yellow: $flame-yellow,
+  gecko-green: $gecko-green,
+  summit-teal: $summit-teal,
+  mobile-blue: $mobile-blue,
+  developer-blue: $developer-blue,
+  nightly-blue: $nightly-blue,
+  aurora-purple: $aurora-purple,
+  bikeshed-magenta: $bikeshed-magenta
+  );
+
+$mofo-grays:(
+  gray-darkest: $gray-darkest,
+  gray-darker: $gray-darker,
+  gray-dark: $gray-dark,
+  gray: $gray,
+  gray-light: $gray-light,
+  gray-lighter: $gray-lighter,
+  gray-lightest: $gray-lightest,
+  off-white: $off-white
+);
+
+@each $colorName, $colorVar in $mofo-colors{
+  .color-block-#{$colorName} {
+    @include colorBlockChildren($colorVar, -15, 15, 40);
+  }
+}
+
+@each $grayName, $grayVar in $mofo-grays{
+  .swatch.#{$grayName} {
+    background: $grayVar;
+    &:before{
+      content: '#{$grayVar}';
+    }
+  }
+}
+
+@mixin textBlock($weight) {
+  .text-block-#{$weight} {
+    h1,
+    h5 {
+      font-weight: $weight;
+    }
+  }
+}
+
+@include textBlock(600);
+@include textBlock(500);
+@include textBlock(400);
+@include textBlock(300);
+@include textBlock(200);
+@include textBlock(100);

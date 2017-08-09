@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
 import * as coinDataActions from '../actions/coinDataActions'
 import Loader from '../components/Loader'
 
@@ -11,9 +12,16 @@ class Container extends Component {
 
     }
   }
+  // fetchData() {
+  //   axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=10')
+  //     .then(response => {
+  //       this.props.loading(true)
+  //       console.log(response.data)
+  //     })
+  // }
   componentWillMount() {}
   componentDidMount() {
-    this.props.loading(true)
+    this.props.fetchData()
 
   }
 
@@ -36,7 +44,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loading: (isLoading) => dispatch(coinDataActions.loading(isLoading))
+    loading: (isLoading) => dispatch(coinDataActions.loading(isLoading)),
+    fetchData: () => dispatch(coinDataActions.fetchData())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Container)
