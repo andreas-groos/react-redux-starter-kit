@@ -13,7 +13,6 @@ class Container extends Component {
   }
   componentWillMount() {}
   componentDidMount() {
-    console.log('WILLMOINT')
     this.props.loading(true)
 
   }
@@ -22,7 +21,7 @@ class Container extends Component {
   render() {
     return (
       <div>
-        <h1 className="text-center">Container Element</h1>
+        { /* Displays spinner if data is not yet fetched */ }
         <Loader loading={ this.props.coinData.loading } />
       </div>
     )
