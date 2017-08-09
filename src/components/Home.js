@@ -1,11 +1,9 @@
 import React from 'react'
-import Test from '../containers/TestContainer'
+import Container from '../containers/Container'
 
 const Home = () => {
   return (<div>
-            <h1>The bare minimum</h1>
-            <button className="btn btn-primary">Button</button>
-            <Test />
+            <Container />
           </div>)
 }
 

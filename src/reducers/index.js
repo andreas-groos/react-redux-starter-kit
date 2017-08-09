@@ -1,8 +1,8 @@
 // Set up your root reducer here...
 import { combineReducers } from 'redux'
-import test from './test'
+import coinData from './coinData'
 
 export default combineReducers({
-  testing: test
+  coinData
 // more reducers here.....
 })

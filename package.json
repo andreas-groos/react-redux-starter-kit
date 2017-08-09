@@ -1,7 +1,7 @@
 {
-  "name": "react-slingshot",
-  "version": "7.0.0",
-  "description": "Starter kit for creating apps with React and Redux",
+  "name": "crypto-watch",
+  "version": "0.1.0",
+  "description": "Site for watching crypto currencies",
   "engines": {
     "npm": ">=3"
   },
@@ -27,10 +27,11 @@
     "open:cover": "npm run test:cover && opn ./coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
-  "author": "Cory House",
+  "author": "Andreas Groos",
   "license": "MIT",
   "dependencies": {
     "bootstrap": "next",
+    "moment": "^2.18.1",
     "object-assign": "4.1.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
@@ -103,14 +104,11 @@
     "live",
     "edit",
     "webpack",
-    "redux",
-    "flux",
-    "boilerplate",
-    "starter"
+    "redux"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/coryhouse/react-slingshot"
+    "url": ""
   },
   "jest": {
     "moduleNameMapper": {
@@ -239,5 +237,13 @@
       "react/sort-comp": 1
     },
     "globals": {}
+  },
+  "bugs": {
+    "url": "https://github.com/coryhouse/react-slingshot/issues"
+  },
+  "homepage": "https://github.com/coryhouse/react-slingshot#readme",
+  "main": "webpack.config.dev.js",
+  "directories": {
+    "doc": "docs"
   }
 }
