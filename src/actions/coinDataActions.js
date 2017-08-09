@@ -12,29 +12,30 @@ export function loading(isLoading) {
 }
 
 export function receiveCoinData(json) {
+  console.log('JSON', json)
   return {
     type: 'RECEIVE_COINDATA',
-    currencies: json.data.children.map(child => child.data),
+    currencies: json
   }
 }
 
-export function fetchCoindData() {
+export function fetchCoinData() {
   return function(dispatch) {
+    console.log('fetchdata')
     dispatch(loading(true))
     return fetch('https://api.coinmarketcap.com/v1/ticker/?limit=10')
       .then(
+
         response => response.json(),
-        // Do not use catch, because that will also catch
-        // any errors in the dispatch and resulting render,
-        // causing an loop of 'Unexpected batch number' errors.
-        // https://github.com/facebook/react/issues/6895
         error => console.log('An error occured.', error)
     )
-      .then(json =>
+      .then(json => {
+        dispatch(receiveCoinData(json))
+        dispatch(loading(false))
+      }
       // We can dispatch many times!
       // Here, we update the app state with the results of the API call.
 
-      dispatch(receiveCoinData(json))
     )
   }
 }

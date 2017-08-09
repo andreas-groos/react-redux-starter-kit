@@ -21,7 +21,7 @@ class Container extends Component {
   // }
   componentWillMount() {}
   componentDidMount() {
-    this.props.fetchData()
+    this.props.fetchCoinData()
 
   }
 
@@ -45,7 +45,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loading: (isLoading) => dispatch(coinDataActions.loading(isLoading)),
-    fetchData: () => dispatch(coinDataActions.fetchData())
+    fetchCoinData: () => dispatch(coinDataActions.fetchCoinData())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Container)
