@@ -20,8 +20,8 @@ export class List extends Component {
                      <th>Rank</th>
                      <th>Logo</th>
                      <th>Name</th>
-                     <th>Price USB</th>
-                     <th>Price BTC</th>
+                     <th>$</th>
+                     <th>BTC</th>
                      <th>% 1hr</th>
                      <th>% 24h</th>
                      <th>% 7d</th>
