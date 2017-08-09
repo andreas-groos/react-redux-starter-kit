@@ -1,8 +1,17 @@
-export function fetchData() {
-  return {
-    type: 'FETCH_DATA'
-  }
+// Add images to Data Json
+
+function addImages(json) {
+  json.map(e => {
+    console.log(e.name)
+    const logo = '/img/crypto-icons/128/color/' + e.name.toLowerCase() + '@2x.png'
+    e.logo = logo
+    return e
+  })
+  console.log('after map ', json)
+  return json
 }
+
+
 
 export function loading(isLoading) {
   return {
@@ -30,6 +39,7 @@ export function fetchCoinData() {
         error => console.log('An error occured.', error)
     )
       .then(json => {
+        addImages(json)
         dispatch(receiveCoinData(json))
         dispatch(loading(false))
       }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import * as coinDataActions from '../actions/coinDataActions'
 import Loader from '../components/Loader'
+import Ticker from '../components/Ticker'
 
 class Container extends Component {
 
@@ -30,6 +31,7 @@ class Container extends Component {
     return (
       <div>
         { /* Displays spinner if data is not yet fetched */ }
+        <Ticker />
         <Loader loading={ this.props.coinData.loading } />
       </div>
     )
@@ -44,7 +46,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loading: (isLoading) => dispatch(coinDataActions.loading(isLoading)),
     fetchCoinData: () => dispatch(coinDataActions.fetchCoinData())
   }
 }
