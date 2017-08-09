@@ -1,20 +1,43 @@
 import React, { Component } from 'react'
+import TableRow from './TableRow'
+
+export class List extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sortBy: 'id',
+      asc: true
+    }
+  }
 
 
-const List = (props) => {
-  console.log(props)
-  if (props.currencies) {
-    const listItems = props.currencies.map((e) => <li key={ e.id }>
-                                                    { e.name }
-                                                    <img src={ e.logo } alt="" height="20px" />
-                                                  </li>
-    )
-    return (<ul>
-              { listItems }
-            </ul>)
-  } else {
-    return null
+  render() {
+    return <div className="row">
+             <div className="col-12">
+               <table className="table table-striped">
+                 <thead>
+                   <tr>
+                     <th>Rank</th>
+                     <th>Logo</th>
+                     <th>Name</th>
+                     <th>Price USB</th>
+                     <th>Price BTC</th>
+                     <th>% 1hr</th>
+                     <th>% 24h</th>
+                     <th>% 7d</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   { this.props.currencies.map(e => {
+                       console.log('map', e)
+                       return (<TableRow data={ e } />)
+                     }) }
+                 </tbody>
+               </table>
+             </div>
+           </div>
   }
 }
+
 
 export default List

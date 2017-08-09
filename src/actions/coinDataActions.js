@@ -19,7 +19,6 @@ export function loading(isLoading) {
 }
 
 export function receiveCoinData(json) {
-  console.log('JSON', json)
   return {
     type: 'RECEIVE_COINDATA',
     currencies: json
